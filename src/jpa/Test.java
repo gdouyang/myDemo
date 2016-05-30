@@ -10,5 +10,7 @@ public class Test
 		ApplicationContext context = new ClassPathXmlApplicationContext("/application.xml");
 //		context.
 		CustomerRepository repository = context.getBean(CustomerRepository.class);
+		
+		repository.save(new Customer("欧阳", "国栋"));
 	}
 }
