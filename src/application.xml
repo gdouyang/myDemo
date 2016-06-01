@@ -28,6 +28,15 @@
         <!-- 定义实体管理器工厂 -->
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">  
              <property name="persistenceUnitName" value="myJPA"/>
+             <property name="persistenceUnitPostProcessors">
+			    <list>
+			      <bean class="org.springframework.data.jpa.support.ClasspathScanningPersistenceUnitPostProcessor">
+			        <!-- Mapping文件路径 -->
+			        <constructor-arg value="jpa" />
+			        <property name="mappingFileNamePattern" value="**/*Mapping.xml" />
+			      </bean>
+			    </list>
+			 </property>
         </bean>
          
          <!-- 配置事务管理器 -->  
