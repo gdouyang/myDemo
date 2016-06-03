@@ -41,9 +41,9 @@ public class Test
 		List<Customer> customers = repository.findAllCustomersWithName(custName);
 				//em.createNamedQuery("findAllCustomersWithName").setParameter("custName", "欧阳").getResultList();
 		//System.out.println(customers.size());
-		//customers = repository.findAllCustomersWithNameNative(custName);
+		customers = repository.findAllCustomersWithNameNative(custName);
 				//em.createNamedQuery("findAllCustomersWithNameNative").setParameter("custName", "欧阳").getResultList();
-		//System.out.println(customers.size());
+		System.out.println(customers.size());
 		
 		AddressRepository addressRepository = context.getBean(AddressRepository.class);
 		//addressRepository.save(new Address(1L, "地址"));
