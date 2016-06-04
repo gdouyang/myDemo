@@ -9,19 +9,19 @@ public class Address
 {
 	
 	@Id
-	@Column(name = "OWNER_ID")
-	private long ownerId;
+	@Column(name = "add_id")
+	private long addId;
 	
 	private String name;
 	
-	public long getOwnerId()
+	public long getAddId()
 	{
-		return ownerId;
+		return addId;
 	}
 	
-	public void setOwnerId(long ownerId)
+	public void setAddId(long addId)
 	{
-		this.ownerId = ownerId;
+		this.addId = addId;
 	}
 	
 	public String getName()
@@ -33,18 +33,17 @@ public class Address
 	{
 		this.name = name;
 	}
-
-	public Address(long ownerId, String name)
+	
+	public Address(long addId, String name)
 	{
 		super();
-		this.ownerId = ownerId;
+		this.addId = addId;
 		this.name = name;
 	}
-
+	
 	public Address()
 	{
 	}
-	
 	
 	/*
 	 * @OneToOne
