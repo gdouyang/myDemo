@@ -13,25 +13,41 @@ import jpa.repository.CustomerRepository;
 public class Test2
 {
 	
-	@SuppressWarnings({ "resource" })
 	public static void main(String[] args)
+	{
+		query();
+		//add();
+		System.exit(0);
+	}
+	public static void query(){
+		ApplicationContext context =getContext();
+		CustomerRepository cusRep = context.getBean(CustomerRepository.class);
+		Customer c = cusRep.findFirstByOrderByAddressAsc();
+		System.out.println(c);
+	}
+	
+	private static ApplicationContext getContext()
 	{
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"/application.xml");
-		CustomerRepository cusRep = context
-				.getBean(CustomerRepository.class);
+		return context;
+	}
+	
+	public static void add()
+	{
+		ApplicationContext context = getContext();
+		CustomerRepository cusRep = context.getBean(CustomerRepository.class);
 		AddressRepository addRep = context.getBean(AddressRepository.class);
-		Address a = new Address(1L, "地址");
+		Address a = new Address(3L, "地址3");
 		addRep.save(a);
 		
-		Customer customer = new Customer("欧阳", "国栋");
+		Customer customer = new Customer("欧阳3", "国栋3");
 		customer.setAddress(a);
 		cusRep.save(customer);
-		List<Customer> ls = cusRep.findByFirstName("欧阳");
+		List<Customer> ls = cusRep.findByFirstName("欧阳3");
 		for (Customer c : ls)
 		{
 			System.out.println(c);
 		}
-		System.exit(0);
 	}
 }
