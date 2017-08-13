@@ -24,6 +24,9 @@ public class AbortPoolTest
 		 */
 		for (int i = 0; i < 31; i++)
 		{
+			/**
+			 * 创建时提供的是Runnable接口并不是Thread类所以并不会马上创建新线程
+			 */
 			threadPoolExecutor.execute(new Runnable()
 			{
 				
