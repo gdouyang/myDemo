@@ -1,4 +1,4 @@
-package ji_cheng;
+package extends1;
 
 public class Test {
 	

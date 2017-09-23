@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import jpa.entity.Address;
 import jpa.entity.Customer;
 import jpa.repository.AddressRepository;
 import jpa.repository.CustomerRepository;
@@ -37,12 +36,9 @@ public class Test
 		}
 		EntityManager em = context.getBean(EntityManager.class);
 		//
-		String custName = "欧阳";
+		String custName = "gd";
 		List<Customer> customers = repository.findAllCustomersWithName(custName);
-				//em.createNamedQuery("findAllCustomersWithName").setParameter("custName", "欧阳").getResultList();
-		//System.out.println(customers.size());
 		customers = repository.findAllCustomersWithNameNative(custName);
-				//em.createNamedQuery("findAllCustomersWithNameNative").setParameter("custName", "欧阳").getResultList();
 		System.out.println(customers.size());
 		
 		AddressRepository addressRepository = context.getBean(AddressRepository.class);

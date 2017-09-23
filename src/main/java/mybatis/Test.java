@@ -2,6 +2,7 @@ package mybatis;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

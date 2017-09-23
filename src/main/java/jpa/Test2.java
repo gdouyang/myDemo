@@ -41,10 +41,10 @@ public class Test2
 		Address a = new Address(3L, "地址3");
 		addRep.save(a);
 		
-		Customer customer = new Customer("欧阳3", "国栋3");
+		Customer customer = new Customer("oy3", "gd3");
 		customer.setAddress(a);
 		cusRep.save(customer);
-		List<Customer> ls = cusRep.findByFirstName("欧阳3");
+		List<Customer> ls = cusRep.findByFirstName("oy3");
 		for (Customer c : ls)
 		{
 			System.out.println(c);

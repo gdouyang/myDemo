@@ -1,4 +1,5 @@
-package classloader;
+package classloader.network;
+
 /***
  * 测试网络类加载器
  * @author Snake
