@@ -46,6 +46,7 @@ public class RedisSensorUtil
 			}
 			jedis.zrem(KEY, members);
 		}
+		jedis.close();
 	}
 	
 	public static Jedis getJedis()
@@ -71,6 +72,7 @@ public class RedisSensorUtil
 			
 			jedis.set(KEY + ":" + sensor.getSensorId(),
 					JSONObject.toJSONString(sensor));
+			jedis.close();
 		}
 	}
 	
@@ -98,6 +100,7 @@ public class RedisSensorUtil
 			Sensor sensor = JSONObject.parseObject(value, Sensor.class);
 			sensors.add(sensor);
 		}
+		jedis.close();
 		return sensors;
 	}
 	
@@ -113,6 +116,7 @@ public class RedisSensorUtil
 		Jedis jedis = getJedis();
 		jedis.del(KEY + ":" + sensorId);
 		jedis.zrem(KEY, sensorId);
+		jedis.close();
 	}
 	
 	public static void main(String[] args)
