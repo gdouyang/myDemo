@@ -10,13 +10,6 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-/**
- * 当客户端与服务器建立连接正常通信时关闭客户端，服务器可以正常发消息但会出SocketException: Broken
- * pipe错误。客户端再次连接时服务器的数据还能再次收到(会缓存消息)
- * 
- * @author Snake
- *
- */
 public class Client
 {
 	
