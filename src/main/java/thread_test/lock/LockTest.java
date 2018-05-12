@@ -4,7 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 锁的机制就是 等待, 唤醒，模拟数据库的行级锁
+ * 锁的机制就是 获取、释放，模拟数据库的行级锁 参考：
+ * <ul>
+ * <li>监视器–JAVA同步基本概念
+ * http://ifeve.com/monitors-java-synchronization-mechanism/</li>
+ * <li>探索 Java 同步机制
+ * https://www.ibm.com/developerworks/cn/java/j-lo-synchronized/</li>
+ * </ul>
+ * <li>多线程开发关键技术 http://www.jasongj.com/java/multi_thread/</li>
+ * </ul>
  * 
  * @author Snake
  *
