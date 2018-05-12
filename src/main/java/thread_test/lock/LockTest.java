@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 锁的机制就是 获取、释放，模拟数据库的行级锁 参考：
+ * 锁的机制就是 获取、释放、等待，模拟数据库的行级锁 参考：
  * <ul>
  * <li>监视器–JAVA同步基本概念
  * http://ifeve.com/monitors-java-synchronization-mechanism/</li>
