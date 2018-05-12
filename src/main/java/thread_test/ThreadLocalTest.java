@@ -14,7 +14,7 @@ public class ThreadLocalTest {
 				public void run() {
 					int data = new Random().nextInt();
 					System.out.println(Thread.currentThread().getName()
-							+ "has put data: " + data);
+							+ " has put data: " + data);
 					x.set(data);
 					new A().get();
 					new B().get();
@@ -25,13 +25,13 @@ public class ThreadLocalTest {
 
 	static class A {
 		public void get() {
-
+			System.out.println("class A: " + x.get() + "-" + Thread.currentThread().getName());
 		}
 	}
 
 	static class B {
 		public void get() {
-
+			System.out.println("class B: " + x.get() + "-" + Thread.currentThread().getName());
 		}
 	}
 }
