@@ -21,14 +21,5 @@ public class TestMD5 {
 	}
 	public static void main(String[] args) {
 		System.out.println(new TestMD5().md5("123456")); 
-		try {
-			Thread.sleep(1000);
-			System.out.println("aaaaa");
-			Thread.sleep(1000);
-			System.out.println("bbbbb");
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 	}
 }

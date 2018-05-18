@@ -14,6 +14,7 @@ import java.util.jar.JarFile;
 
 /**
  * 类似Spring自动扫描机制
+ * 
  * @author snake
  *
  */
@@ -25,8 +26,7 @@ public class ScanForPackage {
 		 * 然而在eclipse的工程中却是无法加载的(通过ClassLoader去加载相应的类)。
 		 * 最后我发现eclipse应该是重新设置了CLASSPATH的值了，也正因为这样它才能运行其bin目录下的文件。
 		 * 
-		 * 如果想用CMD的方式来运行，需要在系统环境变量中把所引用的外部jar包的路径加入到ClassPath里面，这样
-		 * 程序才会找到所依赖包的位置。
+		 * 如果想用CMD的方式来运行，需要在系统环境变量中把所引用的外部jar包的路径加入到ClassPath里面，这样 程序才会找到所依赖包的位置。
 		 */
 		ScanForPackage s = new ScanForPackage();
 		System.out.println(s.getClasses("junit.extensions").size());
@@ -63,8 +63,7 @@ public class ScanForPackage {
 					// 获取包的物理路径
 					String filePath = URLDecoder.decode(url.getFile(), "UTF-8");
 					// 以文件的方式扫描整个包下的文件 并添加到集合中
-					findAndAddClassesInPackageByFile(packageName, filePath,
-							recursive, classes);
+					findAndAddClassesInPackageByFile(packageName, filePath, recursive, classes);
 				} else if ("jar".equals(protocol)) {
 					// 如果是jar包文件
 					// 定义一个JarFile
@@ -72,8 +71,7 @@ public class ScanForPackage {
 					JarFile jar;
 					try {
 						// 获取jar
-						jar = ((JarURLConnection) url.openConnection())
-								.getJarFile();
+						jar = ((JarURLConnection) url.openConnection()).getJarFile();
 						// 从此jar包 得到一个枚举类
 						Enumeration<JarEntry> entries = jar.entries();
 						// 同样的进行循环迭代
@@ -92,23 +90,17 @@ public class ScanForPackage {
 								// 如果以"/"结尾 是一个包
 								if (idx != -1) {
 									// 获取包名 把"/"替换成"."
-									packageName = name.substring(0, idx)
-											.replace('/', '.');
+									packageName = name.substring(0, idx).replace('/', '.');
 								}
 								// 如果可以迭代下去 并且是一个包
 								if ((idx != -1) || recursive) {
 									// 如果是一个.class文件 而且不是目录
-									if (name.endsWith(".class")
-											&& !entry.isDirectory()) {
+									if (name.endsWith(".class") && !entry.isDirectory()) {
 										// 去掉后面的".class" 获取真正的类名
-										String className = name.substring(
-												packageName.length() + 1,
-												name.length() - 6);
+										String className = name.substring(packageName.length() + 1, name.length() - 6);
 										try {
 											// 添加到classes
-											classes.add(Class
-													.forName(packageName + '.'
-															+ className));
+											classes.add(Class.forName(packageName + '.' + className));
 										} catch (ClassNotFoundException e) {
 											// log
 											// .error("添加用户自定义视图类错误 找不到此类的.class文件");
@@ -139,8 +131,8 @@ public class ScanForPackage {
 	 * @param recursive
 	 * @param classes
 	 */
-	public void findAndAddClassesInPackageByFile(String packageName,
-			String packagePath, final boolean recursive, Set<Class<?>> classes) {
+	public void findAndAddClassesInPackageByFile(String packageName, String packagePath, final boolean recursive,
+			Set<Class<?>> classes) {
 		// 获取此包的目录 建立一个File
 		File dir = new File(packagePath);
 		// 如果不存在或者 也不是目录就直接返回
@@ -152,28 +144,26 @@ public class ScanForPackage {
 		// 如果存在 就获取包下的所有文件 包括目录
 		File[] dirfiles = dir.listFiles(new FileFilter() {
 			// 自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件)
+			@Override
 			public boolean accept(File file) {
-				return (recursive && file.isDirectory())
-						|| (file.getName().endsWith(".class"));
+				return (recursive && file.isDirectory()) || (file.getName().endsWith(".class"));
 			}
 		});
 		// 循环所有文件
 		for (File file : dirfiles) {
 			// 如果是目录 则继续扫描
 			if (file.isDirectory()) {
-				findAndAddClassesInPackageByFile(
-						packageName + "." + file.getName(),
-						file.getAbsolutePath(), recursive, classes);
+				findAndAddClassesInPackageByFile(packageName + "." + file.getName(), file.getAbsolutePath(), recursive,
+						classes);
 			} else {
 				// 如果是java类文件 去掉后面的.class 只留下类名
-				String className = file.getName().substring(0,
-						file.getName().length() - 6);
+				String className = file.getName().substring(0, file.getName().length() - 6);
 				try {
 					// 添加到集合中去
 					// classes.add(Class.forName(packageName + '.' + className));
 					// 经过回复同学的提醒，这里用forName有一些不好，会触发static方法，没有使用classLoader的load干净
-					classes.add(Thread.currentThread().getContextClassLoader()
-							.loadClass(packageName + '.' + className));
+					classes.add(
+							Thread.currentThread().getContextClassLoader().loadClass(packageName + '.' + className));
 				} catch (ClassNotFoundException e) {
 					System.out.println("添加用户自定义视图类错误 找不到此类的.class文件");
 					// log.error("添加用户自定义视图类错误 找不到此类的.class文件");
