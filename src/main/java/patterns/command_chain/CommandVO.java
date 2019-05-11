@@ -64,7 +64,6 @@ public class CommandVO {
 	}
 
 	public String formatData() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

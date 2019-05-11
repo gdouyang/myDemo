@@ -18,21 +18,29 @@ package test;
  * 
  */
 public class Fabonacci {
-	public static int con(int n) {
+	static int reccount = 0;
+	
+	// 递归
+	public static int rec_con(int n) {
+		reccount++;
 		if (n > 2) {
-			return con(n - 1) + con(n - 2);
+			return rec_con(n - 1) + rec_con(n - 2);
 		}
 		return 1;
 	}
 
 	public static void main(String[] args) {
-		System.out.println(con(9));
+		System.out.println(rec_con(9));
+		System.out.println("rec count="+reccount);
 		System.out.println(con2(9));
+		System.out.println("count="+dpcount);
 	}
 
+	static int dpcount=0;
 	public static int con2(int n) {
 		int[] num = new int[n];
 		for (int i = 0; i < n; i++) {
+			dpcount++;
 			if(i>1){
 				num[i]=num[i-1]+num[i-2];
 			}else{

@@ -28,7 +28,7 @@ public abstract class Command
 			}
 			catch (Exception e)
 			{
-				// TODO 异常处理
+				e.printStackTrace();
 			}
 			// 建立链表
 			if (commandNameList.size() > 0)

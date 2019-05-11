@@ -1,12 +1,14 @@
 package redis.spring;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 import com.alibaba.fastjson.JSONObject;
 
 @RedisHash("persons")
-public class Person
+public class Person implements Serializable
 {
     private Address address;
     
@@ -14,6 +16,10 @@ public class Person
     private String name;
     
     private String value;
+    
+    public Person() {
+    	
+    }
     
     public Person(String name, String value)
     {

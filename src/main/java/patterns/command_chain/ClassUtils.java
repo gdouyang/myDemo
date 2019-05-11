@@ -43,7 +43,6 @@ public class ClassUtils
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		List<File> dirs = new ArrayList<File>();

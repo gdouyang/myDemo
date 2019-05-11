@@ -24,7 +24,7 @@ public class Invoker
 			}
 			catch (Exception e)
 			{
-				// TODO 异常处理
+				e.printStackTrace();
 			}
 		}
 		else

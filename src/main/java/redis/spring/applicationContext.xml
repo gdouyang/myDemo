@@ -27,13 +27,15 @@
 	
 	<bean id="jedisConnFactory" 
 	    class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
-	    p:host-name="localhost"
+	    p:host-name="192.168.31.136"
 	    p:port="6379"
+	    p:password="redis"
 	    p:use-pool="true"/>
 	
-	<!-- redis template definition -->
+	<!-- redis template definition 
 	<bean id="redisTemplate" 
 	    class="org.springframework.data.redis.core.RedisTemplate" 
 	    p:connection-factory-ref="jedisConnFactory"/>
+	-->
 	    
 </beans>
