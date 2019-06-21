@@ -11,6 +11,7 @@ import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.support.collections.RedisList;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,6 +29,9 @@ public class Example
     public ListOperations<String, String> listOps;
     @Resource(name="redisTemplate")
     public ListOperations<String, Person> listOps1;
+    
+    @Resource(name="redisList")
+    RedisList<String> list;
     
     public void addLink()
     {

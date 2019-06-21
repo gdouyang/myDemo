@@ -29,9 +29,14 @@
 	    class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
 	    p:host-name="192.168.31.136"
 	    p:port="6379"
-	    p:password="redis"
 	    p:use-pool="true"/>
 	
+	<bean id="redisList" 
+		class="org.springframework.data.redis.support.collections.RedisCollectionFactoryBean"
+		p:template-ref="redisTemplate"
+		p:key="test_list_key"
+		p:type="LIST"
+	/>
 	<!-- redis template definition 
 	<bean id="redisTemplate" 
 	    class="org.springframework.data.redis.core.RedisTemplate" 

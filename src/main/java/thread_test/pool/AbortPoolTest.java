@@ -35,15 +35,16 @@ public class AbortPoolTest
 				{
 					try
 					{
-						Thread.sleep(10000L);
+						TimeUnit.SECONDS.sleep(3);
 					}
 					catch (InterruptedException e)
 					{
 						e.printStackTrace();
 					}
-					System.out.println(Thread.currentThread().getName());
+					System.out.println(Thread.currentThread().getName() + " is done ActiveCount is " + threadPoolExecutor.getActiveCount());
 				}
 			});
+			System.out.printf("total task: %s \r\n", i+1);
 		}
 	}
 }
